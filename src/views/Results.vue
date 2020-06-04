@@ -1,7 +1,7 @@
 <template>
   <div class="results">
     <BaseIcon />
-    <h1>Search for Instant Answers</h1>
+    
 
     <form v-on:submit.prevent="getAnswers">
       <p>

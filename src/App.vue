@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link :to="{ name: 'home' }">Home</router-link> |
       <router-link :to="{ name: 'results' }">Results</router-link>
+      <h1>Search for Instant Answers</h1>
     </div>
     <router-view/>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img alt="DuckDuckGo logo" src="../assets/ddg-logo.png" />
+    <img alt="DuckDuckGo logo" src="..\assets\ddg-logo.png" />
   </div>
 </template>
 
