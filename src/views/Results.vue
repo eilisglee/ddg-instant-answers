@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="results">
     <BaseIcon />
     <h1>Search for Instant Answers</h1>
 
@@ -36,19 +36,18 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import SearchCard from '@/components/SearchCard.vue'
 import SearchApi from '@/api/SearchApi.js'
 
 export default {
-  name: 'Home',
+  name: 'Results',
   data() {
     return {
-      name: null,
-      // results: null,
-      results: [],
+      Answer: null,
+      posts: [],
       errors: [],
-      search: ''
+      search: '',
+      results: []
     }
   },
   created() {
