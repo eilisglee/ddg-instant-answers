@@ -1,68 +1,59 @@
 <template>
   <div class="home">
     <BaseIcon />
-    
-
-    <form v-on:submit.prevent="getAnswers">
-      <p>
-        Find results for
-        <input type="text" v-model="search" />
-        <button type="submit">Search</button>
-      </p>
-    </form>
-
-    <SearchCard v-for="result in results" :key="result.id" :result="result" />
-    
-    <!-- <ul v-if="results && results.length > 0" class="results">
-      <li v-for="result of results" class="result" :key="result">
+    <div class="form-container" v-show="showForm">
+      <form v-on:submit.prevent="validateForm">
         <p>
-          <strong>
-            {{ results }}
-          </strong>
+          Placeholder
+          <input
+            type="text"
+            v-model="query"
+            id="querybox"
+            placeholder="Type something here"
+          />
+          <button type="submit">Search</button>
         </p>
-      </li>
-    </ul>
-    <div v-else-if="results && results.length == 0" class="no-results">
-      <h2>No results found</h2>
-      <p>Please adjust your search to find more instant answers</p>
+        <p class="error" v-show="showError">
+          Please check the information you have entered. Be sure to fill in all
+          fields.
+        </p>
+      </form>
     </div>
-    <ul v-if="errors.length > 0" class="errors">
-      <li v-for="error of errors" v-bind:key="error">
-        {{ error.message }}
-      </li>
-    </ul> -->
-
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import SearchCard from '@/components/SearchCard.vue'
-import SearchApi from '@/api/SearchApi.js'
+import axios from 'axios'
+// import Search from '@/components/Search.vue'
+import BaseIcon from '@/components/BaseIcon.vue'
 
 export default {
   name: 'Home',
   data() {
     return {
-      name: null,
-      // results: null,
+      search: '',
+      showForm: true,
+      showError: false,
       results: [],
       errors: [],
-      search: ''
+      query: ''
     }
   },
-  created() {
-    SearchApi.getAnswers()
-      .then(response => {
-        this.results = response.data
-      })
-      .catch(error => {
-        console.log('There was an error' + error.response)
-      })
-  },
-  components: {
-    SearchCard
+  methods: {
+    validateForm: function() {
+      if (this.query != '') {
+        this.showForm = false
+        this.$router.push('results')
+      } else {
+        this.showError = true
+      }
+    }
   }
+}
+components: {
+  // Search, 
+  BaseIcon
 }
 </script>
 
