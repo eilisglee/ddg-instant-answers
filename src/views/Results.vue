@@ -1,20 +1,16 @@
 <template>
   <div class="results">
-    <BaseIcon />
     <Search />
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import Search from '@/components/Search.vue'
-import BaseIcon from '@/components/BaseIcon.vue'
 
 export default {
   name: 'Results',
   components: {
-    Search,
-    BaseIcon
+    Search
   }
 }
 </script>

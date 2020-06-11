@@ -1,16 +1,31 @@
 <template>
   <div class="search">
-    <h2>Type in your search term</h2>
     <div class="form-container" v-show="showForm">
-      <form v-on:submit.prevent="getResult(query)">
+      <h2>Type in your search term</h2>
+      <p class="error" v-show="showError">
+        Please check the information you have entered. Be sure to fill in all
+        fields.
+      </p>
+      <form
+        v-on:submit.prevent="
+          validateForm()
+          getResult(query)
+        "
+      >
         <input type="text" placeholder="Type in your search" v-model="query" />
         <button type="submit">Search</button>
       </form>
-      <div class="results" v-if="results">
-        <ul v-for="result in results" :key="result.id">
-          <li>{{ result }}</li>
-        </ul>
-      </div>
+    </div>
+    <div class="results" v-if="results">
+      <ul v-for="result in results" :key="result.id">
+        <li>{{ result }}</li>
+      </ul>
+    </div>
+    <div class="success-message" v-show="!showForm">
+      <h1>Start over?</h1>
+      <p>
+        <router-link :to="{ name: 'home' }">Click here</router-link>
+      </p>
     </div>
   </div>
 </template>
@@ -25,10 +40,18 @@ export default {
       msg: 'Search',
       query: '',
       results: [],
-      showForm: true
+      showForm: true,
+      showError: false
     }
   },
   methods: {
+    validateForm: function() {
+      if (this.query !== '') {
+        this.showForm = false
+      } else {
+        this.showError = true
+      }
+    },
     getResult(query) {
       axios
         .get(
@@ -51,5 +74,3 @@ export default {
   }
 }
 </script>
-
-

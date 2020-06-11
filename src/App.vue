@@ -1,13 +1,24 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link :to="{ name: 'home' }">Home</router-link> |
-      <router-link :to="{ name: 'results' }">Results</router-link>
       <h1>Search for Instant Answers</h1>
+      <BaseIcon />
+      <router-link :to="{ name: 'results' }">Search</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+
+<script>
+import BaseIcon from '@/components/BaseIcon'
+
+export default {
+  name: 'app',
+  components: {
+    BaseIcon
+  }
+}
+</script>
 
 <style>
 #app {
@@ -29,5 +40,9 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+img {
+  height: 20%;
+  width: 20%;
 }
 </style>
