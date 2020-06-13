@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <h1>Search for Instant Answers</h1>
-      <BaseIcon />
-      <router-link :to="{ name: 'results' }">Search</router-link>
-    </div>
+    <h1>Search for Instant Answers</h1>
+    <h2>Results from DuckDuckGo</h2>
+    <BaseIcon />
+    <!-- <router-link :to="{ name: 'results' }">Search</router-link> -->
     <router-view />
   </div>
 </template>

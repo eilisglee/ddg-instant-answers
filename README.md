@@ -1,4 +1,5 @@
 # ddg-instant-answers
+Access the DuckDuckGo Instant Answers API with Vue.js
 
 ## Project setup
 ```

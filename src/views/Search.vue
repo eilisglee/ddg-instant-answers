@@ -17,42 +17,44 @@
       </form>
     </div>
     <div class="results" v-if="results">
-      <ul v-for="result in results" :key="result.id">
-        <li>{{ result }}</li>
-      </ul>
-    </div>
-    <div class="success-message" v-show="!showForm">
-      <h1>Start over?</h1>
-      <p>
-        <router-link :to="{ name: 'home' }">Click here</router-link>
-      </p>
+      <spinner v-if="showSpinner"></spinner>
+      <p>{{ results.Heading }}</p>
+      <p>{{ results.Abstract }}</p>
+      <p>{{ results.AbstractSource }}</p>
+      <p>{{ results.AbstractURL }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import CubeSpinner from '@/components/CubeSpinner'
 
 export default {
   name: 'search',
+  components: {
+    spinner: CubeSpinner
+  },
   data() {
     return {
       msg: 'Search',
       query: '',
       results: [],
       showForm: true,
-      showError: false
+      showError: false,
+      showSpinner: false
     }
   },
   methods: {
     validateForm: function() {
       if (this.query !== '') {
-        this.showForm = false
+        this.showForm = true
       } else {
         this.showError = true
       }
     },
     getResult(query) {
+      this.showSpinner = true
       axios
         .get(
           'https://api.duckduckgo.com/?q=' +
@@ -65,10 +67,12 @@ export default {
         )
         .then(response => {
           console.log(response.data)
+          this.showSpinner = false
           this.results = response.data
         })
         .catch(error => {
           console.log('There was an error:' + error.response)
+          this.showSpinner = false
         })
     }
   }
