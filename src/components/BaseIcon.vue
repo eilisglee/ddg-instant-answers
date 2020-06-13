@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img alt="DuckDuckGo logo" src="..\assets\ddg-logo.png"  />
+    <router-link :to="{ name: 'search' }"><img alt="DuckDuckGo logo" src="..\assets\ddg-logo.png"  /></router-link>
   </div>
 </template>
 
