@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <div class="form-container" v-show="showForm">
-      <h2>Type in your search term</h2>
+      <h3>Type in your search term</h3>
       <p class="error" v-show="showError">
         Please check the information you have entered. Be sure to fill in all
         fields.
@@ -18,7 +18,7 @@
     </div>
     <div class="results" v-if="results">
       <spinner v-if="showSpinner"></spinner>
-      <p>{{ results.Heading }}</p>
+      <h3>{{ results.Heading }}</h3>
       <p>{{ results.Abstract }}</p>
       <p>{{ results.AbstractSource }}</p>
       <p>{{ results.AbstractURL }}</p>
