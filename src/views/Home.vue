@@ -1,5 +1,6 @@
 <template>
     <div>
-        <h1>This is Home</h1>
+        <p>Vue.js <a href="https://duckduckgo.com/api">DuckDuckGo Instant Answers</a> API consumption.</p>
+        
     </div>
 </template>
